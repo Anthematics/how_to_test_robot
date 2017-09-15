@@ -43,7 +43,6 @@ class TestRobot < MiniTest::Test
 	def test_that_robot_in_good_condition_sent_to_station_4
 		# arrange
 		robot = Robot.new
-
 		# act
 		result= robot.station
 		# assert
@@ -51,38 +50,41 @@ class TestRobot < MiniTest::Test
 	end
 
 	def test_prioritize_tasks_with_empty_todo_list_returns_negative_one
-		skip
+		robot= Robot.new
 		# arrange
-
+		result= robot.prioritize_tasks
 		# act
-
+		assert_equal -1, result
 		# assert
 	end
 
 	def test_prioritize_tasks_with_todos_returns_max_todo_value
-		skip
+		robot= Robot.new
+		robot.todos= [1]
 		# arrange
-
+		result= robot.prioritize_tasks
 		# act
-
+		assert_equal 1, result
 		# assert
 	end
 
 	def test_workday_on_day_off_returns_false
-		skip
+			robot= Robot.new
+			robot.day_off = "sunday"
 		# arrange
-
+			result = robot.workday?("sunday")
 		# act
-
+			assert_equal false, result
 		# assert
 	end
 
 	def test_workday_not_day_off_returns_true
-		skip
+		robot = Robot.new
+		robot.day_off="friday"
 		# arrange
-
+		result = robot.workday?("sunday")
 		# act
-
+		assert_equal true, result
 		# assert
 	end
 
